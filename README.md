@@ -5,6 +5,12 @@ The goal is to practice modern web development techniques, animation, layout pre
 
 ---
 
+## 🌐 Live Demo
+
+Deployed link here ... wip
+
+---
+
 ## 🚀 Overview & Purpose
 
 This project replicates the visual style and interactive feel of Apple’s website using **custom code**.  
@@ -19,12 +25,6 @@ This project exists to:
 - ... wip
 
 All code in this repository is written from scratch.
-
----
-
-## 🌐 Live Demo
-
-Add your deployed link here (e.g., Vercel, Netlify).
 
 ---
 

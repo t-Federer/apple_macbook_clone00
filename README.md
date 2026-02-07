@@ -1,16 +1,70 @@
-# React + Vite
+# MacBook Website Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **frontend recreation inspired by Apple’s MacBook landing page**, built for educational and portfolio purposes.  
+The goal is to practice modern web development techniques, animation, layout precision, and responsive design — **not** to reproduce or redistribute Apple’s proprietary content.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview & Purpose
 
-## React Compiler
+This project replicates the visual style and interactive feel of Apple’s website using **custom code**.  
+It focuses on:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ... wip
 
-## Expanding the ESLint configuration
+This project exists to:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Demonstrate frontend development skills  
+- Explore high‑fidelity UI/UX implementation  
+- ... wip
+
+All code in this repository is written from scratch.
+
+---
+
+## 🌐 Live Demo
+
+Add your deployed link here (e.g., Vercel, Netlify).
+
+---
+
+## 🛠️ Tech Stack
+
+- HTML / CSS / JavaScript  
+- React
+- Three JS
+- GSAP
+- Vite
+
+---
+
+
+## 📁 Project Structure
+... wip
+
+---
+
+## 📦 Installation
+
+```bash
+git clone <your-repo-url>
+cd <project-folder>
+npm install
+npm run dev
+```
+
+## ⚠️ Important Notice (Copyright & Assets)
+
+This is a **non-commercial educational project**.
+
+- Any Apple trademarks, product names, or visual references remain the property of their respective owners.  
+- ... wip
+
+If you clone or fork this project, please respect Apple’s intellectual property and replace any external assets accordingly.
+
+---
+
+## 📄 License
+
+This project is released under the **MIT License**.  
+You are free to study, modify, and reuse the code, but **you must provide your own assets** and comply with all relevant copyright laws.

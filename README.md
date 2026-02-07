@@ -11,7 +11,7 @@ Deployed link here ... wip
 
 ---
 
-## 🚀 Overview & Purpose
+## 🔍 Overview & Purpose
 
 This project replicates the visual style and interactive feel of Apple’s website using **custom code**.  
 It focuses on:
@@ -46,9 +46,11 @@ All code in this repository is written from scratch.
 
 ## 📦 Installation
 
+Clone the repository and install the project dependencies:
+
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/t-Federer/apple_macbook_clone00.git
+cd apple_macbook_clone00
 npm install
 npm run dev
 ```
@@ -64,7 +66,7 @@ If you clone or fork this project, please respect Apple’s intellectual propert
 
 ---
 
-## 📄 License
+## ⚖️ License
 
 This project is released under the **MIT License**.  
 You are free to study, modify, and reuse the code, but **you must provide your own assets** and comply with all relevant copyright laws.

@@ -1,9 +1,9 @@
 # MacBook Website Clone
 
-This project is a **frontend recreation** inspired by Apple’s MacBook landing page, built for educational and portfolio purposes.  
-The goal is to practice modern web development techniques, animation, layout precision, and responsive design — **not** to reproduce or redistribute Apple’s proprietary content.
+This project is a **frontend recreation** inspired by Apple’s MacBook landing page.  
+Built for educational and portfolio purposes, the goal is to practice modern web development techniques, animation, layout precision, and responsive design — **not** to reproduce or redistribute Apple’s proprietary content.
 
-> Live Demo: Deployed link here ... wip
+🔗 **Demo:** [link coming soon](link)  
 
 ---
 

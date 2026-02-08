@@ -1,14 +1,10 @@
+import NavBar from "./components/NavBar"
+
 function App() {
         return (
-                <div>
-                        <h1>Test asset from public</h1>
-                        <p>Is the image showing up?</p>
-                        <img
-                                src="/battery.png"
-                                alt="Test"
-                                style={{ width: "100px", borderRadius: "8px", marginTop: "1rem" }}
-                        />
-                </div>
+                <main>
+                        <NavBar />
+                </main>
         )
 }
 

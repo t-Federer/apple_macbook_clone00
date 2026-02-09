@@ -24,55 +24,55 @@ const moveGroup = (group, x) => {
         gsap.to(group.position, { x, duratio: ANIMATION_DURATION })
 }
 
-const ModelSwitcher = ({ scale, isMobile}) => {
-        const smallMacbookRef = useRef();
-        const largeMacbookRef = useRef();
+const ModelSwitcher = ({ scale, visualScale}) => {
+    const smallMacbookRef = useRef();
+    const largeMacbookRef = useRef();
 
-        const SCALE_LARGE_DESKTOP = 0.07;
-        const SCALE_LARGE_MOBILE = 0.05;
-        const showLargeMacbook = scale === SCALE_LARGE_DESKTOP || scale === SCALE_LARGE_MOBILE;
+    // logic values
+    const SCALE_SMALL = 0.06;
+    const SCALE_LARGE = 0.07;
 
-        useGSAP(() => {
-                if(showLargeMacbook) {
-                        moveGroup(smallMacbookRef.current, -OFFSET_DISTANCE);
-                        moveGroup(largeMacbookRef.current, 0);
+    const showLargeMacbook = scale === SCALE_LARGE;
 
-                        fadeMeshes(smallMacbookRef.current, 0);
-                        fadeMeshes(largeMacbookRef.current, 1);
-                } else {
-                        moveGroup(smallMacbookRef.current, 0);
-                        moveGroup(largeMacbookRef.current, OFFSET_DISTANCE);
+    useGSAP(() => {
+        if (showLargeMacbook) {
+            moveGroup(smallMacbookRef.current, -OFFSET_DISTANCE);
+            moveGroup(largeMacbookRef.current, 0);
 
-                        fadeMeshes(smallMacbookRef.current, 1);
-                        fadeMeshes(largeMacbookRef.current, 0);
-                }
+            fadeMeshes(smallMacbookRef.current, 0);
+            fadeMeshes(largeMacbookRef.current, 1);
+        } else {
+            moveGroup(smallMacbookRef.current, 0);
+            moveGroup(largeMacbookRef.current, OFFSET_DISTANCE);
 
-        }, [scale])
-
-        const controlsConfig = {
-                snap: true,
-                speed: 1,
-                zoom: 1,
-                azimuth: [-Infinity, Infinity],
-                // real world physics
-                config: {mass: 1, tension: 0, friction: 26}
+            fadeMeshes(smallMacbookRef.current, 1);
+            fadeMeshes(largeMacbookRef.current, 0);
         }
+    }, [scale]);
 
-        return (
-                <>
-                        <PresentationControls {... controlsConfig}>
-                                <group ref={largeMacbookRef}>
-                                        <MacbookModel16 scale={isMobile ?  0.05 : 0.07} />
-                                </group>
-                        </PresentationControls>
+    const controlsConfig = {
+        snap: true,
+        speed: 1,
+        zoom: 1,
+        azimuth: [-Infinity, Infinity],
+        config: { mass: 1, tension: 0, friction: 26 }
+    };
 
-                        <PresentationControls {... controlsConfig}>
-                                <group ref={smallMacbookRef}>
-                                        <MacbookModel14 scale={isMobile ?  0.03 : 0.06} />
-                                </group>
-                        </PresentationControls>
-                </>
-        )
-}
+    return (
+        <>
+            <PresentationControls {...controlsConfig}>
+                <group ref={largeMacbookRef}>
+                    <MacbookModel16 scale={visualScale} />
+                </group>
+            </PresentationControls>
+
+            <PresentationControls {...controlsConfig}>
+                <group ref={smallMacbookRef}>
+                    <MacbookModel14 scale={visualScale} />
+                </group>
+            </PresentationControls>
+        </>
+    );
+};
 
 export default ModelSwitcher

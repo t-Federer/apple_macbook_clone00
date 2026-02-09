@@ -1,4 +1,4 @@
-import { Environment, Lightformer } from "@react-three/drei"
+import { Environment, Lightformer } from "@react-three/drei";
 
 const StudioLights = () => {
         return (

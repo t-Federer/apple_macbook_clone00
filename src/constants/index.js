@@ -39,31 +39,37 @@ const performanceImages = [
 const performanceImgPositions = [
     {
         id: "p1",
-        desktop: {left: 5, bottom: 65},
+        desktop: { left: 5, bottom: 65 },
+        mobile:  { x: -90, y: -80 },
     },
     {
         id: "p2",
-        desktop: {right: 10, bottom: 60},
+        desktop: { right: 10, bottom: 60 },
+        mobile:  { x: 90, y: -80 },
     },
     {
         id: "p3",
-        desktop: {right: -5, bottom: 45},
+        desktop: { right: -5, bottom: 45 },
+        mobile:  { x: 110, y: 0 },
     },
     {
         id: "p4",
-        desktop: {right: -10, bottom: 0},
+        desktop: { right: -10, bottom: 0 },
+        mobile:  { x: 90, y: 80 },
     },
     {
         id: "p5",
-        desktop: {left: 20, bottom: 50},
+        desktop: { left: 20, bottom: 50 },
     },
     {
         id: "p6",
-        desktop: {left: 2, bottom: 30},
+        desktop: { left: 2, bottom: 30 },
+        mobile:  { x: -110, y: 0 },
     },
     {
         id: "p7",
-        desktop: {left: -5, bottom: 0},
+        desktop: { left: -5, bottom: 0 },
+        mobile:  { x: -90, y: 80 },
     },
 ];
 

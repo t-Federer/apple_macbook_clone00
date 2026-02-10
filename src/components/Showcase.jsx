@@ -13,7 +13,7 @@ const Showcase = () => {
                                         end: "70% 55%",
                                         scrub: true,
                                         pin: true,
-                                        markers: true
+                                        // markers: true
                                 }
                         });
 

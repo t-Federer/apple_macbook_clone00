@@ -3,7 +3,7 @@ import StudioLights from "./three/StudioLights";
 import { features, featureSequence } from "../constants/index";
 import clsx from "clsx";
 import { Suspense, useEffect, useRef } from "react";
-import {Html} from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import MacbookModel from "./models/Macbook";
 import { useMediaQuery } from "react-responsive";
 import useMacbookStore from "../store";
@@ -12,7 +12,7 @@ import gsap from "gsap";
 
 const ModelScroll = () => {
         const groupRef = useRef(null);
-        const isMobile = useMediaQuery({ query: "(max-width: 1024px)" })
+        const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
         const { setTexture } = useMacbookStore();
 
         // Preload all feature videos during component mount
@@ -21,56 +21,58 @@ const ModelScroll = () => {
                         const v = document.createElement('video');
                         Object.assign(v, {
                                 src: feature.videoPath,
-                                muted: true, 
-                                playsInline: true, 
+                                muted: true,
+                                playsInline: true,
                                 preload: "auto",
                                 crossOrigin: "anonymous"
                         });
-
-                        v.load()
-                })
+                        v.load();
+                });
         }, []);
 
         useGSAP(() => {
                 // 3D model rotation animation
                 const modelTimeline = gsap.timeline({
-                scrollTrigger: {
-                        trigger: "#f-canvas",
-                        start: "top top",
-                        end: "bottom  top",
-                        scrub: 1,
-                        pin: true,
-                }});
+                        scrollTrigger: {
+                                trigger: "#f-canvas",
+                                start: "top top",
+                                end: "bottom  top",
+                                scrub: 1,
+                                pin: true,
+                        }
+                });
 
                 // Sync the feature content
                 const timeline = gsap.timeline({
-                scrollTrigger: {
-                        trigger: "#f-canvas",
-                        start: "top center",
-                        end: "bottom  top",
-                        scrub: 1,
-                }})
+                        scrollTrigger: {
+                                trigger: "#f-canvas",
+                                start: "top center",
+                                end: "bottom  top",
+                                scrub: 1,
+                        }
+                });
 
                 // 3D spin effect
-                if(groupRef.current) {
-                        modelTimeline.to(groupRef.current.rotation, { y: Math.PI * 2, ease: "power1.inOut"})
-                        }
-                // Sync content & texture 
+                if (groupRef.current) {
+                        modelTimeline.to(groupRef.current.rotation, { y: Math.PI * 2, ease: "power1.inOut" });
+                }
+
+                // Sync content & texture
                 timeline
                         .call(() => setTexture("/videos/feature-1.mp4"))
-                        .to(".box1", { opacity: 1, y: 0, delay: 1 })
+                        .to(".box1", { opacity: 1, y: 0, duration: 8, ease: "power2.out", delay: 1 })
 
                         .call(() => setTexture("/videos/feature-2.mp4"))
-                        .to(".box2", { opacity: 1, y: 0 })
+                        .to(".box2", { opacity: 1, y: 0, duration: 8, ease: "power2.out" })
 
                         .call(() => setTexture("/videos/feature-3.mp4"))
-                        .to(".box3", { opacity: 1, y: 0 })
+                        .to(".box3", { opacity: 1, y: 0, duration: 8, ease: "power2.out" })
 
                         .call(() => setTexture("/videos/feature-4.mp4"))
-                        .to(".box4", { opacity: 1, y: 0})
+                        .to(".box4", { opacity: 1, y: 0, duration: 8, ease: "power2.out" })
 
                         .call(() => setTexture("/videos/feature-5.mp4"))
-                        .to(".box5", { opacity: 1, y: 0 })
+                        .to(".box5", { opacity: 1, y: 0, duration: 8, ease: "power2.out" });
         }, []);
 
         return (
@@ -79,8 +81,8 @@ const ModelScroll = () => {
                                 <MacbookModel scale={isMobile ? 0.06 : 0.09} position={[0, -1, 0]} />
                         </Suspense>
                 </group>
-        )
-}
+        );
+};
 
 const Features = () => {
         return (
@@ -94,10 +96,9 @@ const Features = () => {
                         </Canvas>
                         <div className="absolute inset-0">
                                 {features.map((feature, index) => (
-                                        <div 
-                                                key={feature.id} 
-                                                className={clsx("box", `box${index +1}`, 
-                                                feature.styles)}
+                                        <div
+                                                key={feature.id}
+                                                className={clsx("box", `box${index + 1}`, feature.styles)}
                                         >
                                                 <img src={feature.icon} alt={feature.highlight} />
                                                 <p>
@@ -108,7 +109,7 @@ const Features = () => {
                                 ))}
                         </div>
                 </section>
-        )
-}
+        );
+};
 
-export default Features
+export default Features;

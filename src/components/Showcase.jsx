@@ -10,7 +10,7 @@ const Showcase = () => {
                                 scrollTrigger: {
                                         trigger: "#showcase",
                                         start: "top top",
-                                        end: "bottom center",
+                                        end: "70% 55%",
                                         scrub: true,
                                         pin: true,
                                         markers: true

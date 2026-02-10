@@ -10,9 +10,9 @@ const Showcase = () => {
                                 scrollTrigger: {
                                         trigger: "#showcase",
                                         start: "top top",
-                                        end: "bottom top",
+                                        end: "+=1000",
                                         scrub: true,
-                                        pin: true,
+                                        pin: true
                                 }
                         });
 

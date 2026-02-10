@@ -23,7 +23,12 @@ const Highlights = () => {
         return (
                 <section id="highlights">
                         <h2>There's never been a better time to upgrade.</h2>
-                        <h3>Here's what you get with the new Macbook Pro.</h3>
+                        <h3>
+                                Here's what you get with the
+                                <span className="lg:hidden"><br /></span>
+                                new Macbook Pro.
+                        </h3>
+
 
                         <div className="masonry">
                                 <div className="left-column">

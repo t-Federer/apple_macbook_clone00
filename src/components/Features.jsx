@@ -54,7 +54,7 @@ const ModelScroll = () => {
 
                 // 3D spin effect
                 if (groupRef.current) {
-                        modelTimeline.to(groupRef.current.rotation, { y: Math.PI * 2, ease: "power1.inOut" });
+                        modelTimeline.to(groupRef.current.rotation, { y: Math.PI * 1.7, ease: "power1.inOut" });
                 }
 
                 // Sync content & texture

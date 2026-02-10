@@ -296,7 +296,8 @@ body {
   }
 
   #highlights {
-    @apply container mx-auto lg:py-40 max-lg:px-5;
+    @apply container mx-auto max-lg:px-5;
+    @apply lg:pt-0 lg:pb-40;
 
     h2 {
       @apply text-white font-semibold text-3xl lg:text-7xl text-center max-w-3xl mx-auto;
@@ -396,6 +397,12 @@ body {
           }
         }
       }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    #highlights {
+      margin-top: 2rem; 
     }
   }
 

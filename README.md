@@ -3,7 +3,7 @@
 This project is a **frontend recreation** inspired by Apple’s MacBook landing page.  
 Built for educational and portfolio purposes, the goal is to practice modern web development techniques, animation, layout precision, and responsive design — **not** to reproduce or redistribute Apple’s proprietary content.
 
-🔗 **Demo:** [link coming soon](link)  
+🔗 **Demo:** [macbook-clone-landing](https://macbook-clone-landing.vercel.app/)  
 
 ---
 

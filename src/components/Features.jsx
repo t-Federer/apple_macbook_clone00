@@ -4,13 +4,13 @@ import { features } from "../constants/index";
 import clsx from "clsx";
 import { Suspense, useRef } from "react";
 import { Html } from "@react-three/drei";
-import Macbook from "./models/Macbook";
+import MacbookModel from "./models/Macbook";
 import { useMediaQuery } from "react-responsive";
 import useMacbookStore from "../store";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-// Video preloading is handled by TexturePreloader inside Macbook,
+// Video preloading is handled by TexturePreloader inside MacbookModel,
 // within the correct WebGL context — no more createElement calls outside the Canvas.
 
 const ModelScroll = () => {
@@ -24,7 +24,7 @@ const ModelScroll = () => {
                         scrollTrigger: {
                                 trigger: "#f-canvas",
                                 start: "top top",
-                                end: "bottom top",
+                                end: "bottom  top",
                                 scrub: 1,
                                 pin: true,
                         },
@@ -35,7 +35,7 @@ const ModelScroll = () => {
                         scrollTrigger: {
                                 trigger: "#f-canvas",
                                 start: "top center",
-                                end: "bottom top",
+                                end: "bottom  top",
                                 scrub: 1,
                         },
                 });
@@ -73,7 +73,7 @@ const ModelScroll = () => {
                                         </Html>
                                 }
                         >
-                                <Macbook scale={isMobile ? 0.06 : 0.09} position={[0, -1, 0]} />
+                                <MacbookModel scale={isMobile ? 0.06 : 0.09} position={[0, -1, 0]} />
                         </Suspense>
                 </group>
         );

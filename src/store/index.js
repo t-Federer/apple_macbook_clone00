@@ -7,7 +7,7 @@ const useMacbookStore = create((set) => ({
         scale: 0.07, //16" default
         setScale: (scale) => set({ scale }),
 
-        texture: "videos/feature-1.mp4",
+        texture: "/videos/feature-1.mp4",
         setTexture: (texture) => set({ texture }),
 
         reset: () => set({ color: "#ADB5BD", scale: 0.07, texture: "/videos/feature-1.mp4" }),

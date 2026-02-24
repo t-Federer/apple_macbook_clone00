@@ -8,33 +8,49 @@ Source: https://sketchfab.com/3d-models/macbook-pro-m3-16-inch-2024-8e34fc2b3031
 Title: macbook pro M3 16 inch 2024
 */
 
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF, useVideoTexture } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import useMacbookStore from '../../store';
 import { noChangeParts, featureSequence } from '../../constants';
 import { Color } from "three";
 
-// All texture paths, extracted once outside the component.
-// Order is stable — we index into the textures array by matching the active path.
+// All texture paths, stable order, extracted once outside the component
 const allTexturePaths = [...new Set(featureSequence.map((f) => f.videoPath))];
-
-// Each hook call below loads one video and keeps it alive for the lifetime of
-// the component. Hooks must be called unconditionally, so we use one component
-// per path and select the active texture by comparing the path prop.
-const ScreenMaterial = ({ path, activePath }) => {
-        const tex = useVideoTexture(path, {
-                start: true,
-                loop: true,
-                muted: true,
-                crossOrigin: 'anonymous',
-        });
-        if (path !== activePath) return null;
-        return <meshBasicMaterial map={tex} toneMapped={false} />;
-};
 
 export default function Macbook(props) {
         const { color, texture } = useMacbookStore();
         const { nodes, materials, scene } = useGLTF('/models/macbook-transformed.glb');
+
+        const texMap = useRef({});
+        const matRef = useRef();
+        // Track which path is currently applied to avoid redundant updates
+        const appliedPath = useRef(null);
+
+        // TextureLoader defined inside Macbook so texMap is a closure variable, not a prop
+        const TextureLoader = ({ path }) => {
+                const tex = useVideoTexture(path, {
+                        start: true,
+                        loop: true,
+                        muted: true,
+                        crossOrigin: 'anonymous',
+                });
+                if (tex) texMap.current[path] = tex;
+                return null;
+        };
+
+        // Every R3F frame: if the active texture is not yet applied, apply it.
+        // This runs in sync with the Three.js render loop, so there is no timing
+        // gap between the texture becoming available and it appearing on screen.
+        useFrame(() => {
+                if (!matRef.current) return;
+                const tex = texMap.current[texture];
+                if (tex && appliedPath.current !== texture) {
+                        matRef.current.map = tex;
+                        matRef.current.needsUpdate = true;
+                        appliedPath.current = texture;
+                }
+        });
 
         // Update MacBook body color
         useEffect(() => {
@@ -46,32 +62,36 @@ export default function Macbook(props) {
         }, [color, scene]);
 
         return (
-                <group {...props} dispose={null}>
-                        <mesh geometry={nodes.Object_10.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_16.geometry} material={materials.zhGRTuGrQoJflBD} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_20.geometry} material={materials.PaletteMaterial002} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_22.geometry} material={materials.lmWQsEjxpsebDlK} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_30.geometry} material={materials.LtEafgAVRolQqRw} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_32.geometry} material={materials.iyDJFXmHelnMTbD} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_34.geometry} material={materials.eJObPwhgFzvfaoZ} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_38.geometry} material={materials.nDsMUuDKliqGFdU} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_42.geometry} material={materials.CRQixVLpahJzhJc} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_48.geometry} material={materials.YYwBgwvcyZVOOAA} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_54.geometry} material={materials.SLGkCohDDelqXBu} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_58.geometry} material={materials.WnHKXHhScfUbJQi} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_66.geometry} material={materials.fNHiBfcxHUJCahl} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_74.geometry} material={materials.LpqXZqhaGCeSzdu} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_82.geometry} material={materials.gMtYExgrEUqPfln} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_96.geometry} material={materials.PaletteMaterial003} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_107.geometry} material={materials.JvMFZolVCdpPqjj} rotation={[Math.PI / 2, 0, 0]} />
-                        <mesh geometry={nodes.Object_123.geometry} rotation={[Math.PI / 2, 0, 0]}>
-                                {/* All textures are loaded at all times; only the active one is applied */}
-                                {allTexturePaths.map((path) => (
-                                        <ScreenMaterial key={path} path={path} activePath={texture} />
-                                ))}
-                        </mesh>
-                        <mesh geometry={nodes.Object_127.geometry} material={materials.ZCDwChwkbBfITSW} rotation={[Math.PI / 2, 0, 0]} />
-                </group>
+                <>
+                        {/* All video textures loaded and kept alive for the component lifetime */}
+                        {allTexturePaths.map((path) => (
+                                <TextureLoader key={path} path={path} />
+                        ))}
+
+                        <group {...props} dispose={null}>
+                                <mesh geometry={nodes.Object_10.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_16.geometry} material={materials.zhGRTuGrQoJflBD} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_20.geometry} material={materials.PaletteMaterial002} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_22.geometry} material={materials.lmWQsEjxpsebDlK} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_30.geometry} material={materials.LtEafgAVRolQqRw} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_32.geometry} material={materials.iyDJFXmHelnMTbD} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_34.geometry} material={materials.eJObPwhgFzvfaoZ} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_38.geometry} material={materials.nDsMUuDKliqGFdU} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_42.geometry} material={materials.CRQixVLpahJzhJc} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_48.geometry} material={materials.YYwBgwvcyZVOOAA} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_54.geometry} material={materials.SLGkCohDDelqXBu} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_58.geometry} material={materials.WnHKXHhScfUbJQi} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_66.geometry} material={materials.fNHiBfcxHUJCahl} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_74.geometry} material={materials.LpqXZqhaGCeSzdu} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_82.geometry} material={materials.gMtYExgrEUqPfln} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_96.geometry} material={materials.PaletteMaterial003} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_107.geometry} material={materials.JvMFZolVCdpPqjj} rotation={[Math.PI / 2, 0, 0]} />
+                                <mesh geometry={nodes.Object_123.geometry} rotation={[Math.PI / 2, 0, 0]}>
+                                        <meshBasicMaterial ref={matRef} toneMapped={false} />
+                                </mesh>
+                                <mesh geometry={nodes.Object_127.geometry} material={materials.ZCDwChwkbBfITSW} rotation={[Math.PI / 2, 0, 0]} />
+                        </group>
+                </>
         );
 }
 

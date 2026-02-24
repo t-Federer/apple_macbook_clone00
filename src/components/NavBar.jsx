@@ -9,7 +9,7 @@ const NavBar = () => {
                                 <ul>
                                         {navLinks.map(({label}) => (
                                                 <li key={label}>
-                                                        <a href={label}>{label}</a>
+                                                        <a href="#">{label}</a>
                                                 </li>
                                         ))}
                                 </ul>

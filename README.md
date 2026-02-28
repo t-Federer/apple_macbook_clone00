@@ -1,6 +1,6 @@
 # MacBook Landing Page (clone)
 
-<img src="./.github/images/landing_hero.png" alt="Landing Hero" width="100%" />
+<img src="./.github/images/landing_hero.webp" alt="Landing Hero" width="100%" />
 
 ---
 

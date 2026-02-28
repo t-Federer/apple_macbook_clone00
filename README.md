@@ -4,7 +4,7 @@
 
 ---
 
-🔗 **Demo:** [macbook-clone-landing](https://macbook-clone-landing.vercel.app/)  
+↗️ **Demo:** [macbook-clone-landing](https://macbook-clone-landing.vercel.app/) 
 
 ---
 

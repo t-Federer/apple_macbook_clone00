@@ -90,6 +90,8 @@ npm run dev
 ```
 Finally, open http://localhost:5173 in your browser to view the project.
 
+---
+
 ## ⚠️ Important Notice (Copyright & Assets)
 
 This is a **non-commercial educational project**.

@@ -4,7 +4,9 @@
 
 ---
 
-↗️ **Demo:** [macbook-clone-landing](https://macbook-clone-landing.vercel.app/) 
+<div align="center">
+  ↗️ <a href="https://t-federer.github.io/portfolio_01/"><strong>See it live</strong></a>
+</div>
 
 ---
 
